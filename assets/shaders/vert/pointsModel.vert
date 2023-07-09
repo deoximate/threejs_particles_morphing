@@ -63,8 +63,13 @@ void main() {
     n = tan(norm/(s*s2))*(uModelAngle.y*0.8);
   } else {
     n = sin(norm/(s*s2))*(uModelAngle.y*0.8);
-
-
+/*
+  if (mod(idx, 2.0) == 1.0)  {
+    vIsVisible = 0.0;
+  } else {
+    gl_PointSize = 15.0-dist*3.5;
+    vIsVisible = 1.0;
+  }*/
     
     /*if (abs(sumVec3(n)) >= 0.05) {
       vIsVisible = 0.0;

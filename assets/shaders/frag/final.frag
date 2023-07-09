@@ -48,7 +48,6 @@ void main() {
   }
 
 
-
   color.rgb = (colParticles.rgb);
 
 
