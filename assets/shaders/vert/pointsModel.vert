@@ -83,7 +83,7 @@ void main() {
   //pos *= 1.0+sin(uTime*10.0)*(0.025*norm.z)*mixValue;
 
 
-  gl_PointSize *= uDPR;
+  //gl_PointSize *= uDPR;
 
 /*
   if (gl_PointSize <= 1.0) {

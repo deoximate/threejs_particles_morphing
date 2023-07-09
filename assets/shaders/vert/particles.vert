@@ -56,7 +56,7 @@ void main() {
 
 
 
-  gl_PointSize *= uDPR;
+  //gl_PointSize *= uDPR;
 
 
   vec4 modelViewPosition = viewMatrix * modelMatrix * vec4(pos, 1.0);
