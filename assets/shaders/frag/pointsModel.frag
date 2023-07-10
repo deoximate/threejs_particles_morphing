@@ -4,6 +4,7 @@
 
 //uniform sampler2D tDraw;
 uniform sampler2D tMask;
+uniform sampler2D tMask2;
 
 uniform float uTime;
 uniform vec2 uResolution;
@@ -32,30 +33,6 @@ vec4 color = vec4(vec3(1.0), 1.0);
 vec4 color2 = vec4(vec3(0.0), 1.0);
 
 
-float fallerSpeed(float col, float faller) {
-    return mod(cos(col * 363.435  + faller * 234.323), 0.1) * 1.0 + 0.3;
-}
-
-float matrix(vec2 uv) {
-  vec2 CELLS = vec2(27.0*4.0, 27.0);
-  float FALLERS = 14.0;
-  float FALLERHEIGHT = 7.0;
-
-  vec2 pix = mod(uv, 1.0/CELLS);
-  vec2 cell = (uv - pix) * CELLS;
-  pix *= CELLS * vec2(0.8, 1.0) + vec2(0.1, 0.0);
-
-  float b = 0.0;
-  for (float i = 0.0; i < FALLERS; ++i) {
-    float f = 3.0 - cell.y * 0.05 -
-    mod((uTime + i * 3534.34) * fallerSpeed(cell.x, i), FALLERHEIGHT);
-    if (f > 0.0 && f < 1.0)
-      b += f;
-  }
-
-  return b;
-}
-
 
 
 void main() {
@@ -78,7 +55,8 @@ void main() {
 
         color.rgb = vec3(colors.main)
         *vec3(distance(vPos, vec3(0.0))+0.25)*2.0
-        -(mod(vPos.y+uTime*0.5+vPos.z, 0.5));
+        -(mod(vPos.y+uTime*0.5+vPos.z, 0.5))
+        ;
 
 
 
@@ -87,12 +65,6 @@ void main() {
 
 
 
-    //! 1
-    float zNear = 0.01;
-    float zFar = 2.0; 
-    float z = gl_FragCoord.z * 2.0 - 1.0;
-    float linearDepth = (2.0 * zNear * zFar) / (zFar + zNear - z * (zFar - zNear));	
-    //color.rgb -= linearDepth;
 
     //! 2
     //color.rgb += linearizeDepth(gl_FragCoord.z, 0.0005, 1.0);

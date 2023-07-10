@@ -63,24 +63,16 @@ void main() {
     n = tan(norm/(s*s2))*(uModelAngle.y*0.8);
   } else {
     n = sin(norm/(s*s2))*(uModelAngle.y*0.8);
-/*
-  if (mod(idx, 2.0) == 1.0)  {
-    vIsVisible = 0.0;
-  } else {
-    gl_PointSize = 15.0-dist*3.5;
-    vIsVisible = 1.0;
-  }*/
-    
-    /*if (abs(sumVec3(n)) >= 0.05) {
-      vIsVisible = 0.0;
-    }*/
   }
 
+  
   pos += (n);
 
-  pos *= (1.0-mixValue*0.1);
 
-  pos *= 1.0+sin(uTime*10.0)*(0.025*norm.z)*mixValue;
+  //pos *= 1.0+sin(uTime*10.0)*(0.025*norm.z)*mixValue;
+
+  if (pos.y < 0.45)
+  pos *= 1.0+sin(uTime*12.0)*(distance(pos, vec3(0.0, 0.5, 0.0))*norm.b*0.04)*mixValue;
 
 
   //gl_PointSize *= uDPR;
