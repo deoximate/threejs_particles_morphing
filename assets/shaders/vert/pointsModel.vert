@@ -26,8 +26,6 @@ void main() {
 
 
   //! POSITION
-  //vec3 pos = position2;
-  //vec3 norm = normal2;
   float mixSpeed = 1.0;
   float mixSmooth = 0.75;
   //float stepN = uModelAngle.x*10.0;
@@ -41,16 +39,18 @@ void main() {
 
 
 
-  float dist = distance(uViewPos, pos);
+  float dist = abs(distance(uViewPos, pos));
 
   
   if (pos.y <= uMousePos.y) {
-    gl_PointSize = (5.0-dist*3.5);
+    gl_PointSize = 5.0-dist*3.5;
     vIsNumber = 0.0;
   } else {
-    gl_PointSize = (15.0-dist*3.5);
+    gl_PointSize = 15.0-dist*3.5;
     vIsNumber = 1.0;
   }
+
+  gl_PointSize = clamp(gl_PointSize, 1.0, 15.0);
 
 
 
@@ -78,7 +78,7 @@ void main() {
   pos.x *= 1.0+mixValue*0.1;
 
   //! HEART POS
-  //pos.z = 0.4;
+  //pos.z = 0.4*mixValue;
 
   //! HEART
   if (pos.y < 0.2 && vIsNumber == 1.0)
@@ -96,8 +96,6 @@ void main() {
   //pos.y += ((-abs(distVel)*10.0)*2.0+0.7);
 
 
-
-  //gl_PointSize *= uDPR;
 
 /*
   if (gl_PointSize <= 1.0) {

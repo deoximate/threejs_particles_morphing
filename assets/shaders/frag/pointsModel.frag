@@ -60,7 +60,7 @@ void main() {
 
         color.rgb *= 1.0-sin(vInstanceID*0.1)*0.2+0.2;
 
-        color.a = (1.0-v)*0.8;
+        color.a = (1.0-v);
       }
 
 
