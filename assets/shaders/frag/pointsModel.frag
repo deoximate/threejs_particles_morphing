@@ -58,11 +58,10 @@ void main() {
         -(mod(vPos.y+uTime*0.5+vPos.z, 0.5))
         ;
 
-
+        color.rgb *= 1.0-sin(vInstanceID*0.1)*0.2+0.2;
 
         color.a = (1.0-v)*0.8;
       }
-
 
 
 
